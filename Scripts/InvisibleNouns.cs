@@ -8,11 +8,12 @@ public class InvisibleNouns : MonoBehaviour
     public GameObject[] blocks;
     public SpriteRenderer[] blocksRenderer;
 
-    public ChangeCharacter ccNumber;
+    public ChangeCharacter ccNumber; 
     public int number;
 
     void Start()
     {
+        ccNumber= GetComponent<ChangeCharacter>();
         blocksRenderer = new SpriteRenderer[blocks.Length];
 
         for (int i=0; i<blocks.Length;i++)

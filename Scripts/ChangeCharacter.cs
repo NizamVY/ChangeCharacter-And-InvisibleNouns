@@ -11,6 +11,10 @@ public class ChangeCharacter: MonoBehaviour
     public SpriteRenderer bodies2Renderer;
 
     public int bodiesNumber;
+    public float changeTimer;
+    public float changeTimeValue;
+
+    public MagicPovTime lPTtimer;
     
     void Start()
     {
@@ -27,18 +31,22 @@ public class ChangeCharacter: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+
+
+        if (Input.GetKeyDown(KeyCode.Tab) || lPTtimer.visionTime < 0 )
         {
-            if (bodiesNumber == 1)
+            if (bodiesNumber == 1 && lPTtimer.visionTime >= lPTtimer.visionTimeValue)
             {
                 bodies1.GetComponent<MovementControll>().enabled = false;
                 bodies2.GetComponent<MovementControll>().enabled = true;
                 bodiesNumber = 2;
                 bodies1Renderer.color = Color.white;
                 bodies2Renderer.color = Color.black;
+                lPTtimer.visionTime = lPTtimer.visionTimeValue / 2;
             }
-            else
+            else if(bodiesNumber == 2 )
             {
+                changeTimer = changeTimeValue;
                 bodies1.GetComponent<MovementControll>().enabled = true;
                 bodies2.GetComponent<MovementControll>().enabled = false;
                 bodiesNumber = 1;
